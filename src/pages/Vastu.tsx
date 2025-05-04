@@ -19,7 +19,7 @@ const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
       </div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-cool-gray mb-5">{description}</p>
-      <Link to="/contact" className="btn-primary inline-block text-sm">
+      <Link to="/contact" target='_blank' className="btn-primary inline-block text-sm">
         Schedule Visit
       </Link>
     </div>
@@ -106,7 +106,7 @@ const Vastu = () => {
     <div className="min-h-screen bg-soft-cream">
       <Navbar />
       <WhatsAppButton />
-      
+
       {/* Header Section */}
       <section className="pt-32 pb-16 bg-gradient-to-r from-celestial-blue/30 to-dusty-lavender/30">
         <div className="container mx-auto px-4 text-center">
@@ -119,16 +119,16 @@ const Vastu = () => {
           </p>
         </div>
       </section>
-      
+
       {/* Services Grid */}
       <section className="section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12">Our <span className="text-mystic-gold">Vastu Services</span></h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div key={index} className="animate-fade-in opacity-0" style={{ animationDelay: `${index * 100}ms` }}>
-                <ServiceCard 
+                <ServiceCard
                   title={service.title}
                   description={service.description}
                   icon={service.icon}
@@ -138,16 +138,16 @@ const Vastu = () => {
           </div>
         </div>
       </section>
-      
+
       {/* How It Works - Timeline */}
       <section className="section bg-white">
         <div className="container mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12">How It <span className="text-mystic-gold">Works</span></h2>
-          
+
           <div className="max-w-3xl mx-auto">
             {timelineSteps.map((step, index) => (
               <div key={index} className="animate-fade-in opacity-0" style={{ animationDelay: `${index * 150}ms` }}>
-                <TimelineStep 
+                <TimelineStep
                   number={step.number}
                   title={step.title}
                   description={step.description}
@@ -158,12 +158,12 @@ const Vastu = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Benefits */}
       <section className="section bg-dusty-lavender/10">
         <div className="container mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12">Benefits of <span className="text-mystic-gold">Vastu Consultation</span></h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '100ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
@@ -172,7 +172,7 @@ const Vastu = () => {
               </h3>
               <p className="text-cool-gray">Create spaces with balanced energy that feel instantly more peaceful and harmonious.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '200ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <CheckCircle2 size={20} className="text-mystic-gold mr-2" />
@@ -180,7 +180,7 @@ const Vastu = () => {
               </h3>
               <p className="text-cool-gray">Remove energetic blocks to wealth and create an environment that supports abundance.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <CheckCircle2 size={20} className="text-mystic-gold mr-2" />
@@ -188,7 +188,7 @@ const Vastu = () => {
               </h3>
               <p className="text-cool-gray">Optimize spaces for improved communication and harmonious family relationships.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '400ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <CheckCircle2 size={20} className="text-mystic-gold mr-2" />
@@ -196,7 +196,7 @@ const Vastu = () => {
               </h3>
               <p className="text-cool-gray">Create spaces that support physical and mental wellbeing through balanced energy.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '500ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <CheckCircle2 size={20} className="text-mystic-gold mr-2" />
@@ -204,7 +204,7 @@ const Vastu = () => {
               </h3>
               <p className="text-cool-gray">Optimize workspaces for creativity, productivity, and business success.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl shadow-md animate-fade-in opacity-0" style={{ animationDelay: '600ms' }}>
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <CheckCircle2 size={20} className="text-mystic-gold mr-2" />
@@ -215,17 +215,17 @@ const Vastu = () => {
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="bg-mystic-gold text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Bring Harmony to Your Space</h2>
-          <Link to="/contact" className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-block">
+          <Link to="/contact" target='_blank' className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-block">
             Book Now
           </Link>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );

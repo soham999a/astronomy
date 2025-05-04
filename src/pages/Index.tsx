@@ -1,4 +1,3 @@
-
 import { Calendar, UserCheck, Phone, Award, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HeroSection from '@/components/HeroSection';
@@ -13,18 +12,18 @@ const Index = () => {
     <div className="min-h-screen bg-soft-cream">
       <Navbar />
       <WhatsAppButton />
-      
+
       {/* Hero Section */}
       <HeroSection />
-      
+
       {/* About Section */}
       <section id="about" className="section">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative animate-fade-in opacity-0">
-              <img 
-                src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop" 
-                alt="Spiritual Expert" 
+              <img
+                src="astrologer.webp"
+                alt="Spiritual Expert"
                 className="rounded-lg shadow-xl w-full max-w-md mx-auto"
               />
               <div className="hidden md:block absolute -bottom-6 -right-6 bg-mystic-gold text-white p-4 rounded-lg shadow-lg">
@@ -32,7 +31,7 @@ const Index = () => {
                 <p className="text-sm">of Experience</p>
               </div>
             </div>
-            
+
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
               <h2 className="text-3xl md:text-4xl font-semibold mb-6">About <span className="text-mystic-gold">Our Expert</span></h2>
               <p className="text-cool-gray mb-4">
@@ -41,7 +40,7 @@ const Index = () => {
               <p className="text-cool-gray mb-6">
                 Trained in traditional Vedic practices and contemporary applications, our expert provides authentic guidance that blends time-tested wisdom with practical solutions for today's challenges.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="flex items-center">
                   <div className="h-10 w-10 rounded-full bg-dusty-lavender/20 flex items-center justify-center text-mystic-gold mr-3">
@@ -52,7 +51,7 @@ const Index = () => {
                     <p className="text-sm text-cool-gray">Vedic Sciences</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center">
                   <div className="h-10 w-10 rounded-full bg-dusty-lavender/20 flex items-center justify-center text-mystic-gold mr-3">
                     <UserCheck size={20} />
@@ -67,7 +66,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Services Section */}
       <section id="services" className="section bg-celestial-blue/10">
         <div className="container mx-auto">
@@ -77,28 +76,30 @@ const Index = () => {
               Discover how ancient sciences can bring clarity, harmony, and positive transformation to your modern life.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '150ms' }}>
-              <ServiceCard 
+              <ServiceCard
                 title="Numerology Services"
                 description="Unlock the power of numbers in your life with personalized analysis and recommendations."
                 link="/numerology"
                 icon={Calendar}
+                external={true}  // 👈 added
               />
             </div>
-            
+
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
-              <ServiceCard 
+              <ServiceCard
                 title="Vastu Consultation"
                 description="Create harmony in your spaces with ancient architectural wisdom adapted for modern homes."
                 link="/vastu"
                 icon={Compass}
+                external={true}  // 👈 added
               />
             </div>
-            
+
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '450ms' }}>
-              <ServiceCard 
+              <ServiceCard
                 title="Astrology"
                 description="Gain insights into your life path and potential through celestial analysis."
                 link="/astrology"
@@ -109,7 +110,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Why Choose Us */}
       <section id="why-us" className="section">
         <div className="container mx-auto">
@@ -119,7 +120,7 @@ const Index = () => {
               Our approach combines ancient wisdom with modern understanding to provide solutions that truly work.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-md text-center animate-fade-in opacity-0" style={{ animationDelay: '150ms' }}>
               <div className="h-14 w-14 rounded-full bg-dusty-lavender/20 flex items-center justify-center mb-4 text-mystic-gold mx-auto">
@@ -128,7 +129,7 @@ const Index = () => {
               <h3 className="font-medium mb-2">Authentic</h3>
               <p className="text-cool-gray text-sm">Traditional knowledge, authentic practices</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md text-center animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
               <div className="h-14 w-14 rounded-full bg-dusty-lavender/20 flex items-center justify-center mb-4 text-mystic-gold mx-auto">
                 <UserCheck size={24} />
@@ -136,7 +137,7 @@ const Index = () => {
               <h3 className="font-medium mb-2">Personalized</h3>
               <p className="text-cool-gray text-sm">Tailored solutions for individual needs</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md text-center animate-fade-in opacity-0" style={{ animationDelay: '450ms' }}>
               <div className="h-14 w-14 rounded-full bg-dusty-lavender/20 flex items-center justify-center mb-4 text-mystic-gold mx-auto">
                 <UserCheck size={24} />
@@ -144,7 +145,7 @@ const Index = () => {
               <h3 className="font-medium mb-2">1000+ Clients</h3>
               <p className="text-cool-gray text-sm">Trusted by clients worldwide</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md text-center animate-fade-in opacity-0" style={{ animationDelay: '600ms' }}>
               <div className="h-14 w-14 rounded-full bg-dusty-lavender/20 flex items-center justify-center mb-4 text-mystic-gold mx-auto">
                 <Phone size={24} />
@@ -155,7 +156,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Testimonials */}
       <section id="testimonials" className="section bg-dusty-lavender/10">
         <div className="container mx-auto">
@@ -165,26 +166,26 @@ const Index = () => {
               Don't just take our word for it – hear from those whose lives have been transformed.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '150ms' }}>
-              <TestimonialCard 
+              <TestimonialCard
                 name="Priya Sharma"
                 location="Delhi, India"
                 testimonial="The numerology analysis was eye-opening. The name correction suggestions have brought positive changes in my career."
               />
             </div>
-            
+
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
-              <TestimonialCard 
+              <TestimonialCard
                 name="Rahul Mehra"
                 location="Mumbai, India"
                 testimonial="The Vastu consultation completely transformed our home energy. We feel more peaceful and prosperous."
               />
             </div>
-            
+
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '450ms' }}>
-              <TestimonialCard 
+              <TestimonialCard
                 name="Anjali Patel"
                 location="Bengaluru, India"
                 testimonial="I was skeptical at first, but the personal number analysis was incredibly accurate and helpful."
@@ -193,7 +194,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Quick Contact */}
       <section id="quick-contact" className="section bg-mystic-gold text-white text-center">
         <div className="container mx-auto max-w-3xl animate-fade-in opacity-0">
@@ -201,13 +202,13 @@ const Index = () => {
           <p className="mb-8 text-white/90">
             Take the first step towards harmony and positive transformation with a personalized consultation.
           </p>
-          <Link to="/contact" className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center">
+          <Link to="/contact" target='_blank' className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center">
             <Calendar size={20} className="mr-2" />
             Get Consultation
           </Link>
         </div>
       </section>
-      
+
       {/* Footer */}
       <Footer />
     </div>

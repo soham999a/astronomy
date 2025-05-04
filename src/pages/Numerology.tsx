@@ -20,7 +20,7 @@ const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
       </div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-cool-gray mb-5">{description}</p>
-      <Link to="/contact" className="btn-primary inline-block text-sm">
+      <Link to="/contact" target='_blank' className="btn-primary inline-block text-sm">
         Book Now
       </Link>
     </div>
@@ -72,7 +72,7 @@ const Numerology = () => {
     },
     {
       title: "Dasha Calculation",
-      description: "Period-wise analysis of favorable and challenging times in your life journey.",
+      description: "Period-wise analysis of favorable and challenging times in your journey of life.",
       icon: <Calendar size={28} />
     },
     {
@@ -120,7 +120,7 @@ const Numerology = () => {
     <div className="min-h-screen bg-soft-cream">
       <Navbar />
       <WhatsAppButton />
-      
+
       {/* Header Section with Banner */}
       <section className="pt-32 pb-16 bg-gradient-to-r from-dusty-lavender/30 to-celestial-blue/30">
         <div className="container mx-auto px-4 text-center">
@@ -133,16 +133,16 @@ const Numerology = () => {
           </p>
         </div>
       </section>
-      
+
       {/* Services Grid */}
       <section className="section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12">Our <span className="text-mystic-gold">Numerology Services</span></h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div key={index} className="animate-fade-in opacity-0" style={{ animationDelay: `${index * 100}ms` }}>
-                <ServiceCard 
+                <ServiceCard
                   title={service.title}
                   description={service.description}
                   icon={service.icon}
@@ -152,12 +152,12 @@ const Numerology = () => {
           </div>
         </div>
       </section>
-      
+
       {/* FAQ Section */}
       <section className="section bg-white">
         <div className="container mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12">Frequently Asked <span className="text-mystic-gold">Questions</span></h2>
-          
+
           <div className="max-w-3xl mx-auto">
             {faqs.map((faq, index) => (
               <FaqItem key={index} question={faq.question} answer={faq.answer} />
@@ -165,17 +165,17 @@ const Numerology = () => {
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="bg-mystic-gold text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Need Your Numbers Corrected?</h2>
-          <Link to="/contact" className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-block">
+          <Link to="/contact" target='_blank' className="px-8 py-3 bg-white text-mystic-gold rounded-lg hover:bg-gray-100 transition-colors inline-block">
             Contact Now
           </Link>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
