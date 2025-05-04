@@ -36,16 +36,16 @@ const HeroSection = () => {
         <div
           key={index}
           className={`slide-bg ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-          style={{ 
+          style={{
             backgroundImage: slide.bg,
             transitionDelay: index === currentSlide ? '0ms' : '0ms'
           }}
         ></div>
       ))}
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-charcoal/30"></div>
-      
+
       {/* Content */}
       <div className="relative h-full container mx-auto flex flex-col justify-center items-center text-center text-white px-4">
         <div className="animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
@@ -54,34 +54,34 @@ const HeroSection = () => {
             <span className="text-mystic-gold">Numbers, Space, and Stars</span>
           </h1>
         </div>
-        
+
         <div className="animate-fade-in opacity-0" style={{ animationDelay: '600ms' }}>
           <p className="text-lg md:text-xl mb-8">Numerology | Vastu | Astrology</p>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in opacity-0" style={{ animationDelay: '900ms' }}>
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
+            target='_blank'
             className="btn-primary flex items-center justify-center"
           >
             <Calendar size={18} className="mr-2" />
             Book Consultation
           </Link>
-          <Link to="/contact" className="btn-secondary">
+          <Link to="/contact" target='_blank' className="btn-secondary">
             Contact Us
           </Link>
         </div>
       </div>
-      
+
       {/* Slider indicators */}
       <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide ? 'bg-mystic-gold w-6' : 'bg-white/50'
-            }`}
+            className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? 'bg-mystic-gold w-6' : 'bg-white/50'
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           ></button>
         ))}
