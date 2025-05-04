@@ -12,7 +12,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ title, description, link, icon: Icon, comingSoon = false }: ServiceCardProps) => {
   return (
-    <div className="service-card">
+    <div className="service-card group">
       <div className="h-14 w-14 rounded-full bg-dusty-lavender/20 flex items-center justify-center mb-4 text-mystic-gold">
         <Icon size={28} />
       </div>

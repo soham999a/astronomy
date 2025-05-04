@@ -57,7 +57,7 @@
   }
 
   .service-card {
-    @apply relative overflow-hidden rounded-xl p-6 bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group;
+    @apply relative overflow-hidden rounded-xl p-6 bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
   }
 
   .hover-glow {
