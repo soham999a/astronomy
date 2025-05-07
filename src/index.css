@@ -42,10 +42,31 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
   }
 
   body {
     @apply bg-soft-cream text-charcoal font-normal;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Custom viewport height variable for iOS */
+  :root {
+    --vh: 1vh;
+  }
+
+  /* Use the custom viewport height variable */
+  .h-screen {
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100);
+  }
+
+  .min-h-screen {
+    min-height: 100vh; /* Fallback */
+    min-height: calc(var(--vh, 1vh) * 100);
   }
 
   .section {
@@ -57,18 +78,32 @@
   }
 
   .service-card {
-    @apply relative overflow-hidden rounded-xl p-6 bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+    @apply relative overflow-hidden rounded-xl p-4 md:p-6 bg-white shadow-sm transition-all duration-500
+           hover:shadow-md hover:-translate-y-1 border border-transparent hover:border-mystic-gold/10
+           h-full flex flex-col touch-manipulation;
+  }
+
+  /* Add iOS-specific padding for safe areas */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:text-mystic-gold;
+    @apply transition-all duration-300 hover:text-mystic-gold relative
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-mystic-gold
+           after:transition-all after:duration-300 hover:after:w-full;
   }
 
   .btn-primary {
-    @apply px-6 py-3 bg-mystic-gold text-white rounded-lg hover:bg-opacity-90 transition-all duration-300 inline-block text-center;
+    @apply px-6 py-3 bg-mystic-gold text-white rounded-lg hover:bg-opacity-90 transition-all duration-300
+           inline-block text-center shadow-md hover:shadow-lg hover:-translate-y-1 relative overflow-hidden
+           after:absolute after:inset-0 after:bg-white/0 after:hover:bg-white/10 after:transition-colors after:duration-300;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 border-2 border-mystic-gold text-mystic-gold rounded-lg hover:bg-mystic-gold hover:text-white transition-all duration-300 inline-block text-center;
+    @apply px-6 py-3 border-2 border-mystic-gold text-mystic-gold rounded-lg hover:bg-mystic-gold hover:text-white
+           transition-all duration-300 inline-block text-center shadow-sm hover:shadow-md hover:-translate-y-1;
   }
 }

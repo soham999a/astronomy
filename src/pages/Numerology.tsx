@@ -1,10 +1,11 @@
 
 import { useState } from 'react';
-import { Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, ChevronDown, ChevronUp, Calculator, FileText, Grid, Clock, Edit, Phone, Users, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ServiceSlideshow from '@/components/ServiceSlideshow';
 
 interface ServiceCardProps {
   title: string;
@@ -134,22 +135,75 @@ const Numerology = () => {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Section with Slideshow */}
       <section className="section">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12">Our <span className="text-mystic-gold">Numerology Services</span></h2>
+          <h2 className="text-3xl font-semibold text-center mb-8">Our <span className="text-mystic-gold">Numerology Services</span></h2>
+          <p className="text-charcoal text-center max-w-2xl mx-auto mb-12">
+            Discover how the ancient science of numbers can bring clarity, harmony, and positive transformation to your life.
+          </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="animate-fade-in opacity-0" style={{ animationDelay: `${index * 100}ms` }}>
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  icon={service.icon}
-                />
-              </div>
-            ))}
-          </div>
+          <ServiceSlideshow
+            services={[
+              {
+                title: "Personality Number Analysis",
+                description: "Understand your core strengths, challenges, and life purpose through detailed birth number analysis.",
+                link: "/contact",
+                icon: Calculator,
+                external: true
+              },
+              {
+                title: "Destiny Number Reading",
+                description: "Discover where your life path is leading you and how to optimize your journey.",
+                link: "/contact",
+                icon: FileText,
+                external: true
+              },
+              {
+                title: "Grid Analysis (Lo-Shu)",
+                description: "In-depth analysis of your energy grid to identify strengths and areas for improvement.",
+                link: "/contact",
+                icon: Grid,
+                external: true
+              },
+              {
+                title: "Dasha Calculation",
+                description: "Period-wise analysis of favorable and challenging times in your journey of life.",
+                link: "/contact",
+                icon: Clock,
+                external: true
+              },
+              {
+                title: "Name Correction",
+                description: "Optimize your name's vibration to align with your birth energy and life path.",
+                link: "/contact",
+                icon: Edit,
+                external: true
+              },
+              {
+                title: "Number Corrections",
+                description: "Harmonize your mobile, bank account, car, and house numbers for positive energy.",
+                link: "/contact",
+                icon: Phone,
+                external: true
+              },
+              {
+                title: "Compatibility Checking",
+                description: "Analyze relationship compatibility based on number vibrations and energy patterns.",
+                link: "/contact",
+                icon: Users,
+                external: true
+              },
+              {
+                title: "Remedies",
+                description: "Custom remedies to balance unfavorable numbers and enhance positive vibrations.",
+                link: "/contact",
+                icon: Shield,
+                external: true
+              }
+            ]}
+            autoplaySpeed={3500}
+          />
         </div>
       </section>
 

@@ -10,12 +10,14 @@ import Vastu from "./pages/Vastu";
 import Astrology from "./pages/Astrology";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import IOSFixes from "./components/IOSFixes";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <IOSFixes />
       <Toaster />
       <Sonner />
       <BrowserRouter>
