@@ -42,31 +42,34 @@ const Navbar = () => {
           : 'bg-soft-cream/80 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
-        {/* Logo positioned further to the left */}
-        <div className="flex-1">
-          <a href="/" className="flex items-center pl-0 md:pl-0">
-            <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
-              Logo
-            </h1>
-          </a>
-        </div>
+      <div className="container mx-auto px-0 md:px-2 lg:px-4">
+        <div className="flex items-center justify-between">
+          {/* Logo positioned much further to the left */}
+          <div className="w-1/4">
+            <a href="/" className="flex items-center ml-0 md:ml-0 lg:ml-0">
+              <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
+                Logo
+              </h1>
+            </a>
+          </div>
 
-        {/* Mobile menu button with enhanced hover effect */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile menu button with enhanced hover effect */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-        {/* Desktop Navigation - positioned further to the right */}
-        <div className="hidden md:block flex-1 text-right">
-          <nav className="inline-flex items-center justify-end space-x-8">
-            <NavLinks />
-          </nav>
+          {/* Desktop Navigation - positioned much further to the right */}
+          <div className="hidden md:block w-3/4">
+            <nav className="flex items-center justify-end">
+              <NavLinks />
+            </nav>
+          </div>
         </div>
+      </div>
 
         {/* Mobile Navigation - Fixed for iOS with improved handling */}
         {isMenuOpen && (
@@ -104,13 +107,15 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
 
   return (
     <>
-      {links.map((link) => {
+      {links.map((link, index) => {
         const isActive = location.pathname === link.to;
+        // Add extra margin to space out the items
+        const marginClass = !isMobile && index < links.length - 1 ? 'mr-12' : '';
 
         // Special styling for Contact Us button - more prominent box
         if (link.isHighlighted && !isActive) {
           return (
-            <div key={link.to} className="relative py-2 group">
+            <div key={link.to} className={`relative py-2 group ${marginClass}`}>
               <a
                 href={link.to}
                 className={`font-medium text-mystic-gold px-5 py-2.5 border-2 border-mystic-gold rounded-lg transition-all duration-300
@@ -128,7 +133,7 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
           return (
             <div
               key={link.to}
-              className={`relative py-2 ${isMobile ? 'w-full text-center mb-2' : ''}`}
+              className={`relative py-2 ${isMobile ? 'w-full text-center mb-2' : ''} ${marginClass}`}
             >
               <span className="font-medium text-mystic-gold cursor-default">
                 {link.label}
@@ -144,7 +149,7 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
           return (
             <div
               key={link.to}
-              className={`relative py-2 group ${isMobile ? 'w-full text-center mb-2' : ''}`}
+              className={`relative py-2 group ${isMobile ? 'w-full text-center mb-2' : ''} ${marginClass}`}
             >
               <a
                 href={link.to}
