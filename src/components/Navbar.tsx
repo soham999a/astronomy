@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, Star, Compass, Calculator, Phone } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -105,11 +105,11 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
   const isMobile = typeof onClick !== 'undefined'; // If onClick is provided, we're in mobile view
 
   const links = [
-    { to: '/', label: 'Home' },
-    { to: '/numerology', label: 'Numerology' },
-    { to: '/vastu', label: 'Vastu' },
-    { to: '/astrology', label: 'Astrology' },
-    { to: '/contact', label: 'Contact Us', isHighlighted: true },
+    { to: '/', label: 'Home', icon: Home },
+    { to: '/numerology', label: 'Numerology', icon: Calculator },
+    { to: '/vastu', label: 'Vastu', icon: Compass },
+    { to: '/astrology', label: 'Astrology', icon: Star },
+    { to: '/contact', label: 'Contact Us', icon: Phone, isHighlighted: true },
   ];
 
   return (
@@ -128,9 +128,10 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`font-medium text-mystic-gold px-5 py-2.5 border-2 border-mystic-gold rounded-lg transition-all duration-300
-                          hover:bg-mystic-gold hover:text-white hover:shadow-md ${isMobile ? 'block mx-auto w-3/4' : ''}`}
+                          hover:bg-mystic-gold hover:text-white hover:shadow-md ${isMobile ? 'block mx-auto w-3/4' : ''} flex items-center justify-center gap-2`}
                 onClick={onClick}
               >
+                {link.icon && <link.icon size={18} />}
                 {link.label}
               </a>
             </div>
@@ -144,7 +145,8 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
               key={link.to}
               className={`relative py-2 ${isMobile ? 'w-full text-center mb-2' : ''} ${marginClass}`}
             >
-              <span className="font-medium text-mystic-gold cursor-default">
+              <span className="font-medium text-mystic-gold cursor-default flex items-center gap-2">
+                {link.icon && <link.icon size={18} />}
                 {link.label}
               </span>
               {/* Active indicator - more visible gold bar */}
@@ -164,9 +166,10 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
                 href={link.to}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`font-medium text-charcoal transition-all duration-300 hover:text-mystic-gold ${isMobile ? 'block py-2 px-4' : ''} ${link.isHighlighted && isMobile ? 'text-mystic-gold' : ''}`}
+                className={`font-medium text-charcoal transition-all duration-300 hover:text-mystic-gold ${isMobile ? 'block py-2 px-4' : ''} ${link.isHighlighted && isMobile ? 'text-mystic-gold' : ''} flex items-center gap-2`}
                 onClick={onClick}
               >
+                {link.icon && <link.icon size={18} />}
                 {link.label}
               </a>
               {/* Animated underline that appears on hover */}
