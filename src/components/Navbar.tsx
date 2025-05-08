@@ -70,7 +70,7 @@ const Navbar = () => {
           style={{ top: '60px' }}
         >
           <nav className="flex flex-col items-center justify-center h-full space-y-8 text-xl pt-8">
-            <NavLinks onClick={() => setIsMenuOpen(false)} />
+            <NavLinks onClick={() => setIsMenuOpen(false)} isMobile={true} />
           </nav>
         </div>
       </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
   );
 };
 
-const NavLinks = ({ onClick }: { onClick?: () => void }) => {
+const NavLinks = ({ onClick, isMobile = false }: { onClick?: () => void; isMobile?: boolean }) => {
   const location = useLocation();
 
   const links = [
@@ -98,10 +98,20 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
           return (
             <span
               key={link.to}
-              className="font-medium opacity-60 cursor-default flex items-center py-3 px-4 min-h-[44px]"
+              className={`font-medium text-mystic-gold cursor-default flex items-center py-3 px-4 min-h-[44px] relative
+                ${isMobile ? 'bg-mystic-gold/10 rounded-lg w-full justify-center' : ''}`}
             >
               {link.icon}
               {link.label}
+              {!isMobile && (
+                <>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-mystic-gold rounded-full"></span>
+                  <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-mystic-gold rounded-full"></span>
+                </>
+              )}
+              {isMobile && (
+                <span className="absolute right-4 w-2 h-2 bg-mystic-gold rounded-full"></span>
+              )}
             </span>
           );
         } else {
@@ -109,7 +119,8 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
             <a
               key={link.to}
               href={link.to}
-              className="hover-glow font-medium transition-all duration-300 hover:text-mystic-gold hover:scale-110 flex items-center py-3 px-4 min-h-[44px]"
+              className={`font-medium transition-all duration-300 hover:text-mystic-gold flex items-center py-3 px-4 min-h-[44px] relative
+                ${isMobile ? 'w-full justify-center hover:bg-mystic-gold/5 rounded-lg' : 'hover-glow hover:scale-110'}`}
               onClick={() => {
                 if (onClick) onClick();
               }}
