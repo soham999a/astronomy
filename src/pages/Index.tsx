@@ -146,7 +146,7 @@ const Index = () => {
                 external: true
               }
             ]}
-            autoplaySpeed={3500}
+            autoplaySpeed={2000}
           />
 
           {/* Decorative bottom wave */}

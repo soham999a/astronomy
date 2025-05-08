@@ -43,7 +43,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center pl-2 md:pl-4">
           <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
             Logo
           </h1>
@@ -59,7 +59,7 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8 pr-2 md:pr-4">
           <NavLinks />
         </nav>
 
@@ -94,13 +94,28 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
     { to: '/numerology', label: 'Numerology' },
     { to: '/vastu', label: 'Vastu' },
     { to: '/astrology', label: 'Astrology' },
-    { to: '/contact', label: 'Contact Us' },
+    { to: '/contact', label: 'Contact Us', isHighlighted: true },
   ];
 
   return (
     <>
       {links.map((link) => {
         const isActive = location.pathname === link.to;
+
+        // Special styling for Contact Us button
+        if (link.isHighlighted && !isActive && !isMobile) {
+          return (
+            <div key={link.to} className="relative py-2 group">
+              <a
+                href={link.to}
+                className="font-medium text-mystic-gold px-4 py-2 border border-mystic-gold rounded-lg transition-all duration-300 hover:bg-mystic-gold hover:text-white"
+                onClick={onClick}
+              >
+                {link.label}
+              </a>
+            </div>
+          );
+        }
 
         if (isActive) {
           // Enhanced active state with prominent indicator
@@ -127,7 +142,7 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
             >
               <a
                 href={link.to}
-                className={`font-medium text-charcoal transition-all duration-300 hover:text-mystic-gold ${isMobile ? 'block py-2 px-4' : ''}`}
+                className={`font-medium text-charcoal transition-all duration-300 hover:text-mystic-gold ${isMobile ? 'block py-2 px-4' : ''} ${link.isHighlighted && isMobile ? 'text-mystic-gold' : ''}`}
                 onClick={onClick}
               >
                 {link.label}
