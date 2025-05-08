@@ -42,8 +42,8 @@ const HoverServiceCard = ({
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
 
-      {/* Title - Always Visible */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
+      {/* Title - Always Visible at the top */}
+      <div className="absolute top-0 left-0 right-0 p-4 text-white z-10">
         <h3 className="text-2xl font-semibold">{title}</h3>
       </div>
 
@@ -60,7 +60,6 @@ const HoverServiceCard = ({
       >
         <div className="flex-grow"></div>
         <div>
-          <h3 className="text-2xl font-semibold mb-2">{title}</h3>
 
           <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
             {/* Icon */}
@@ -79,7 +78,6 @@ const HoverServiceCard = ({
             ) : (
               <Link
                 to="/contact"
-                target="_blank"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-mystic-gold to-amber-500
                           text-white px-6 py-3 rounded-md border-2 border-white/30
                           hover:from-amber-500 hover:to-mystic-gold transition-all duration-300
