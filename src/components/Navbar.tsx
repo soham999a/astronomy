@@ -42,27 +42,31 @@ const Navbar = () => {
           : 'bg-soft-cream/80 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="container mx-auto flex items-center px-4 md:px-6">
-        {/* Logo positioned to the left with more left margin */}
-        <a href="/" className="flex items-center pl-0 md:pl-0 mr-auto">
-          <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
-            Logo
-          </h1>
-        </a>
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
+        {/* Logo positioned further to the left */}
+        <div className="flex-1">
+          <a href="/" className="flex items-center pl-0 md:pl-0">
+            <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
+              Logo
+            </h1>
+          </a>
+        </div>
 
         {/* Mobile menu button with enhanced hover effect */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10 ml-auto"
+          className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10"
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Desktop Navigation - positioned to the right */}
-        <nav className="hidden md:flex items-center space-x-8 ml-auto">
-          <NavLinks />
-        </nav>
+        {/* Desktop Navigation - positioned further to the right */}
+        <div className="hidden md:block flex-1 text-right">
+          <nav className="inline-flex items-center justify-end space-x-8">
+            <NavLinks />
+          </nav>
+        </div>
 
         {/* Mobile Navigation - Fixed for iOS with improved handling */}
         {isMenuOpen && (
