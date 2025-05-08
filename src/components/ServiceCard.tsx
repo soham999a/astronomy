@@ -56,9 +56,10 @@ const ServiceCard = ({
   external = false,
 }: ServiceCardProps) => {
   const ExploreLink = ({ children }: { children: React.ReactNode }) =>
+    // Always redirect to contact page for "Book Now" buttons
     external ? (
       <a
-        href={link}
+        href="/contact"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center text-mystic-gold group-hover:translate-x-1 transition-transform"
@@ -67,7 +68,7 @@ const ServiceCard = ({
       </a>
     ) : (
       <Link
-        to={link}
+        to="/contact"
         className="inline-flex items-center text-mystic-gold group-hover:translate-x-1 transition-transform"
       >
         {children}

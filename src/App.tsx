@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Numerology from "./pages/Numerology";
+import NumerologyPage from "./pages/NumerologyPage";
 import Vastu from "./pages/Vastu";
 import Astrology from "./pages/Astrology";
 import Contact from "./pages/Contact";
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/numerology" element={<Numerology />} />
+          <Route path="/numerology-new" element={<NumerologyPage />} />
           <Route path="/vastu" element={<Vastu />} />
           <Route path="/astrology" element={<Astrology />} />
           <Route path="/contact" element={<Contact />} />

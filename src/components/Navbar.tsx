@@ -42,11 +42,11 @@ const Navbar = () => {
           : 'bg-soft-cream/80 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="container mx-auto px-0 md:px-2 lg:px-4">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo positioned much further to the left */}
+          {/* Logo positioned further to the left with negative margin */}
           <div className="w-1/4">
-            <a href="/" className="flex items-center ml-0 md:ml-0 lg:ml-0">
+            <a href="/" className="flex items-center -ml-2 md:-ml-4 lg:-ml-6">
               <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
                 Logo
               </h1>
@@ -62,7 +62,7 @@ const Navbar = () => {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop Navigation - positioned much further to the right */}
+          {/* Desktop Navigation - positioned to the right */}
           <div className="hidden md:block w-3/4">
             <nav className="flex items-center justify-end">
               <NavLinks />

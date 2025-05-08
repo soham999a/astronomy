@@ -7,6 +7,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import ServiceCard from '@/components/ServiceCard';
 import ServiceSlideshow from '@/components/ServiceSlideshow';
 import TestimonialCard from '@/components/TestimonialCard';
+import ServicesSection from '@/components/ServicesSection';
 
 const Index = () => {
   return (
@@ -27,10 +28,6 @@ const Index = () => {
                 alt="Spiritual Expert"
                 className="rounded-lg shadow-xl w-full max-w-md mx-auto"
               />
-              <div className="hidden md:block absolute -bottom-6 -right-6 bg-mystic-gold text-white p-4 rounded-lg shadow-lg">
-                <p className="font-bold">20+ Years</p>
-                <p className="text-sm">of Experience</p>
-              </div>
             </div>
 
             <div className="animate-fade-in opacity-0" style={{ animationDelay: '300ms' }}>
@@ -60,6 +57,7 @@ const Index = () => {
                   <div>
                     <p className="font-medium">1000+ Clients</p>
                     <p className="text-sm text-cool-gray">Worldwide</p>
+                    <p className="font-medium text-mystic-gold">20+ Years of Experience</p>
                   </div>
                 </div>
               </div>
@@ -68,95 +66,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section with Enhanced Slideshow */}
-      <section id="services" className="section bg-celestial-blue/10 overflow-hidden">
-        <div className="container mx-auto">
-          {/* Section header with enhanced animation */}
-          <div className="text-center mb-8 animate-fade-in opacity-0 relative">
-            {/* Decorative elements */}
-            <div className="absolute -left-4 top-1/2 w-8 h-8 rounded-full bg-mystic-gold/5 blur-md animate-float hidden md:block"
-                 style={{ animationDuration: '5s' }}></div>
-            <div className="absolute -right-4 top-1/3 w-6 h-6 rounded-full bg-dusty-lavender/5 blur-md animate-float hidden md:block"
-                 style={{ animationDuration: '7s', animationDelay: '1s' }}></div>
-
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4 relative inline-block">
-              Our <span className="text-mystic-gold relative">
-                Services
-                {/* Underline effect */}
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-mystic-gold/50"></span>
-                {/* Subtle glow */}
-                <span className="absolute -bottom-1 left-0 w-full h-1 bg-mystic-gold/20 blur-sm"></span>
-              </span>
-
-              {/* Decorative star */}
-              <span className="absolute -top-1 -right-6 text-mystic-gold/40 animate-pulse-soft hidden md:inline-block"
-                    style={{ animationDuration: '3s' }}>
-                <Sparkles size={16} />
-              </span>
-            </h2>
-
-            <p className="text-charcoal max-w-2xl mx-auto leading-relaxed">
-              Discover how ancient sciences can bring clarity, harmony, and positive transformation to your modern life.
-            </p>
-          </div>
-
-          {/* Enhanced Service Slideshow Component */}
-          <ServiceSlideshow
-            services={[
-              {
-                title: "Compatibility Checking",
-                description: "Analyze relationship compatibility based on number vibrations and energy patterns.",
-                link: "/numerology",
-                icon: Calendar,
-                external: true
-              },
-              {
-                title: "Office/Business Vastu",
-                description: "Optimize workspace energy for better productivity and business growth.",
-                link: "/vastu",
-                icon: Compass,
-                external: true
-              },
-              {
-                title: "Predictive Astrology",
-                description: "Insights into upcoming life phases and guidance for navigating challenges.",
-                link: "/astrology",
-                icon: Star,
-                external: true
-              },
-              {
-                title: "Name Correction",
-                description: "Optimize your name's numerical vibration to attract positive energies and success.",
-                link: "/numerology/name",
-                icon: Sparkles,
-                external: true
-              },
-              {
-                title: "Home Vastu Analysis",
-                description: "Create harmonious living spaces that support health, wealth and relationships.",
-                link: "/vastu/home",
-                icon: Compass,
-                external: true
-              },
-              {
-                title: "Birth Chart Reading",
-                description: "Detailed analysis of your natal chart to reveal your life path and potential.",
-                link: "/astrology/birth-chart",
-                icon: Star,
-                external: true
-              }
-            ]}
-            autoplaySpeed={2000}
-          />
-
-          {/* Decorative bottom wave */}
-          <div className="w-full h-12 mt-8 overflow-hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-full opacity-10">
-              <path fill="#CDB06C" fillOpacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-            </svg>
-          </div>
-        </div>
-      </section>
+      {/* Services Section with Hover Effect Cards */}
+      <ServicesSection />
 
       {/* Why Choose Us */}
       <section id="why-us" className="section">
