@@ -28,51 +28,47 @@ const HoverServiceCard = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image */}
+      {/* Background Image - Fills the entire card */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-500"
+        className="absolute inset-0 transition-all duration-500"
         style={{
           backgroundImage: imageSrc || 'linear-gradient(to bottom, #1A202C, #2D3748)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          height: '100%',
           filter: isHovered ? 'brightness(0.7)' : 'brightness(0.9)'
         }}
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
-
-      {/* Title - Always Visible at the top */}
-      <div className="absolute top-0 left-0 right-0 p-4 text-white z-10">
-        <h3 className="text-2xl font-semibold">{title}</h3>
-      </div>
+      {/* Light Overlay for better text visibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent opacity-40" />
 
       {/* Content that slides up on hover */}
       <div
-        className="absolute inset-x-0 bottom-0 p-4 bg-black/70 text-white transition-all duration-500 ease-in-out flex flex-col"
+        className="absolute inset-x-0 bottom-0 p-4 bg-white/90 text-charcoal transition-all duration-500 ease-in-out"
         style={{
-          transform: isHovered ? 'translateY(0)' : 'translateY(calc(100% - 60px))',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
+          transform: isHovered ? 'translateY(0)' : 'translateY(calc(100% - 0px))',
+          height: 'auto',
+          maxHeight: '80%',
+          backdropFilter: 'blur(5px)'
         }}
       >
-        <div className="flex-grow"></div>
-        <div>
+        {/* All content is inside the sliding panel */}
+        <div className="flex flex-col space-y-3">
+          {/* Icon */}
+          <div className="h-12 w-12 rounded-full bg-mystic-gold/20 flex items-center justify-center text-mystic-gold">
+            <Icon size={24} />
+          </div>
 
-          <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-            {/* Icon */}
-            <div className="h-12 w-12 rounded-full bg-mystic-gold/20 flex items-center justify-center mb-3 text-mystic-gold">
-              <Icon size={24} />
-            </div>
+          {/* Description */}
+          <p className="text-charcoal">{description}</p>
 
-            {/* Description */}
-            <p className="text-gray-200 mb-4">{description}</p>
-
-            {/* Button */}
+          {/* Button */}
+          <div className="pt-2">
             {comingSoon ? (
-              <span className="inline-block px-4 py-2 rounded-md bg-gray-700 text-gray-300">
+              <span className="inline-block px-4 py-2 rounded-md bg-gray-200 text-gray-700">
                 Coming Soon
               </span>
             ) : (

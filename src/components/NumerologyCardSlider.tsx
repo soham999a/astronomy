@@ -56,13 +56,6 @@ const NumerologyCardSlider = ({ services }: NumerologyCardSliderProps) => {
 
   return (
     <div className="relative py-12 px-4 mx-auto max-w-5xl overflow-hidden">
-      {/* Playing indicator */}
-      <div className="text-center mb-6 relative">
-        <p className="text-sm font-medium bg-purple-600 text-white inline-block px-4 py-1 rounded-full">
-          {isPlaying ? 'playing' : 'paused'}
-        </p>
-      </div>
-
       {/* Card Gallery */}
       <div className="gallery relative h-[400px] overflow-hidden mx-auto max-w-4xl">
         <div className="cards relative h-full flex justify-center items-center">
@@ -144,7 +137,7 @@ const NumerologyCardSlider = ({ services }: NumerologyCardSliderProps) => {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4">
           {/* Left Arrow Button */}
           <button
             onClick={goToPrevSlide}
@@ -154,21 +147,6 @@ const NumerologyCardSlider = ({ services }: NumerologyCardSliderProps) => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-          </button>
-
-          {/* Pause/Play Button */}
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="flex items-center text-gray-700 text-sm font-medium"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isPlaying ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-              )}
-            </svg>
-            {isPlaying ? 'Pause' : 'Play'}
           </button>
 
           {/* Right Arrow Button */}
