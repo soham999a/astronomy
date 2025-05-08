@@ -42,8 +42,9 @@ const Navbar = () => {
           : 'bg-soft-cream/80 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
-        <a href="/" className="flex items-center pl-2 md:pl-4">
+      <div className="container mx-auto flex items-center px-4 md:px-6">
+        {/* Logo positioned to the left with more left margin */}
+        <a href="/" className="flex items-center pl-0 md:pl-0 mr-auto">
           <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
             Logo
           </h1>
@@ -52,14 +53,14 @@ const Navbar = () => {
         {/* Mobile menu button with enhanced hover effect */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10"
+          className="md:hidden text-charcoal hover:text-mystic-gold transition-colors duration-300 p-2 rounded-full hover:bg-mystic-gold/10 ml-auto"
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 pr-2 md:pr-4">
+        {/* Desktop Navigation - positioned to the right */}
+        <nav className="hidden md:flex items-center space-x-8 ml-auto">
           <NavLinks />
         </nav>
 
@@ -74,7 +75,7 @@ const Navbar = () => {
             onClick={(e) => e.target === e.currentTarget && setIsMenuOpen(false)}
           >
             <div className="h-full overflow-y-auto pb-safe" style={{ WebkitOverflowScrolling: 'touch' }}>
-              <nav className="flex flex-col items-center pt-8 pb-20 space-y-6 text-lg px-6">
+              <nav className="flex flex-col items-center pt-8 pb-20 space-y-8 text-lg px-6">
                 <NavLinks onClick={() => setIsMenuOpen(false)} />
               </nav>
             </div>
@@ -102,13 +103,14 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
       {links.map((link) => {
         const isActive = location.pathname === link.to;
 
-        // Special styling for Contact Us button
-        if (link.isHighlighted && !isActive && !isMobile) {
+        // Special styling for Contact Us button - more prominent box
+        if (link.isHighlighted && !isActive) {
           return (
             <div key={link.to} className="relative py-2 group">
               <a
                 href={link.to}
-                className="font-medium text-mystic-gold px-4 py-2 border border-mystic-gold rounded-lg transition-all duration-300 hover:bg-mystic-gold hover:text-white"
+                className={`font-medium text-mystic-gold px-5 py-2.5 border-2 border-mystic-gold rounded-lg transition-all duration-300
+                          hover:bg-mystic-gold hover:text-white hover:shadow-md ${isMobile ? 'block mx-auto w-3/4' : ''}`}
                 onClick={onClick}
               >
                 {link.label}
