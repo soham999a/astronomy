@@ -22,11 +22,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 backdrop-blur-sm shadow-md py-3'
+        isScrolled || isMenuOpen
+          ? 'bg-white shadow-md py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -38,8 +50,9 @@ const Navbar = () => {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-charcoal hover:text-mystic-gold"
+          className="md:hidden text-charcoal hover:text-mystic-gold p-2"
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          style={{ minHeight: '44px', minWidth: '44px' }}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -51,12 +64,12 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`fixed inset-0 z-40 bg-soft-cream transform ${
+          className={`fixed inset-0 z-40 bg-white transform ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           } transition-transform duration-300 ease-in-out md:hidden`}
           style={{ top: '60px' }}
         >
-          <nav className="flex flex-col items-center justify-center h-full space-y-8 text-xl">
+          <nav className="flex flex-col items-center justify-center h-full space-y-8 text-xl pt-8">
             <NavLinks onClick={() => setIsMenuOpen(false)} />
           </nav>
         </div>
@@ -85,7 +98,7 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
           return (
             <span
               key={link.to}
-              className="font-medium opacity-60 cursor-default flex items-center"
+              className="font-medium opacity-60 cursor-default flex items-center py-3 px-4 min-h-[44px]"
             >
               {link.icon}
               {link.label}
@@ -96,10 +109,10 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
             <a
               key={link.to}
               href={link.to}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover-glow font-medium transition-all duration-300 hover:text-mystic-gold hover:scale-110 flex items-center"
-              onClick={onClick}
+              className="hover-glow font-medium transition-all duration-300 hover:text-mystic-gold hover:scale-110 flex items-center py-3 px-4 min-h-[44px]"
+              onClick={() => {
+                if (onClick) onClick();
+              }}
             >
               {link.icon}
               {link.label}

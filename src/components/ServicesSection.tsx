@@ -10,7 +10,7 @@ const ServicesSection = () => {
       link: "/numerology",
       icon: Calculator,
       // Numerology-themed image
-      imageSrc: "url('/images/numerology-bg.jpg')"
+      imageSrc: "url('/numerology.png')"
     },
     {
       title: "Vastu Consultation",
@@ -18,7 +18,7 @@ const ServicesSection = () => {
       link: "/vastu",
       icon: Compass,
       // Vastu-themed image
-      imageSrc: "url('/images/vastu-bg.jpg')"
+      imageSrc: "url('/vastu.png')"
     },
     {
       title: "Astrology",
@@ -26,7 +26,7 @@ const ServicesSection = () => {
       link: "/astrology",
       icon: Star,
       // Astrology-themed image
-      imageSrc: "url('/images/astrology-bg.jpg')",
+      imageSrc: "url('/astrology.png')",
       comingSoon: true
     }
   ];

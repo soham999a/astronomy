@@ -7,6 +7,7 @@ import { useEffect } from 'react';
  * - Fixes touch event handling
  * - Handles safe area insets
  * - Improves scrolling performance
+ * - Fixes navbar issues on mobile
  */
 const IOSFixes = () => {
   useEffect(() => {
@@ -20,7 +21,38 @@ const IOSFixes = () => {
       return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     };
 
-    // Fix for iOS Safari overscroll bounce effect
+    // Function to detect mobile
+    const isMobile = () => {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    // Apply fixes for all mobile devices
+    const applyMobileFixes = () => {
+      // Fix for mobile navbar
+      const navbar = document.querySelector('header');
+      if (navbar) {
+        // Ensure navbar is properly positioned on mobile
+        (navbar as HTMLElement).style.position = 'fixed';
+        (navbar as HTMLElement).style.width = '100%';
+        (navbar as HTMLElement).style.zIndex = '1000';
+      }
+
+      // Improve touch targets for mobile
+      const touchTargets = document.querySelectorAll('a, button, input, select, textarea');
+      touchTargets.forEach(element => {
+        const el = element as HTMLElement;
+        if (window.getComputedStyle(el).getPropertyValue('min-height') === 'auto' ||
+            parseInt(window.getComputedStyle(el).getPropertyValue('min-height')) < 44) {
+          el.style.minHeight = '44px';
+        }
+        if (window.getComputedStyle(el).getPropertyValue('min-width') === 'auto' ||
+            parseInt(window.getComputedStyle(el).getPropertyValue('min-width')) < 44) {
+          el.style.minWidth = '44px';
+        }
+      });
+    };
+
+    // Apply iOS-specific fixes
     if (isIOS() || isSafari()) {
       // Add CSS to prevent overscroll
       document.body.style.overscrollBehavior = 'none';
@@ -86,7 +118,7 @@ const IOSFixes = () => {
         element.addEventListener('focus', handleInputFocus);
       });
 
-      // Cleanup
+      // Cleanup for iOS-specific fixes
       return () => {
         document.body.style.overscrollBehavior = '';
         document.documentElement.style.overscrollBehavior = '';
@@ -98,6 +130,18 @@ const IOSFixes = () => {
         inputElements.forEach(element => {
           element.removeEventListener('focus', handleInputFocus);
         });
+      };
+    }
+
+    // Apply mobile fixes for all mobile devices
+    if (isMobile()) {
+      applyMobileFixes();
+
+      // Add resize listener to reapply mobile fixes
+      window.addEventListener('resize', applyMobileFixes);
+
+      return () => {
+        window.removeEventListener('resize', applyMobileFixes);
       };
     }
   }, []);
