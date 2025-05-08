@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo positioned further to the left with negative margin */}
           <div className="w-1/4">
-            <a href="/" className="flex items-center -ml-2 md:-ml-4 lg:-ml-6">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="flex items-center -ml-2 md:-ml-4 lg:-ml-6">
               <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">
                 Logo
               </h1>
@@ -125,6 +125,8 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
             <div key={link.to} className={`relative py-2 group ${marginClass}`}>
               <a
                 href={link.to}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`font-medium text-mystic-gold px-5 py-2.5 border-2 border-mystic-gold rounded-lg transition-all duration-300
                           hover:bg-mystic-gold hover:text-white hover:shadow-md ${isMobile ? 'block mx-auto w-3/4' : ''}`}
                 onClick={onClick}
@@ -160,6 +162,8 @@ const NavLinks = ({ onClick }: { onClick?: () => void }) => {
             >
               <a
                 href={link.to}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`font-medium text-charcoal transition-all duration-300 hover:text-mystic-gold ${isMobile ? 'block py-2 px-4' : ''} ${link.isHighlighted && isMobile ? 'text-mystic-gold' : ''}`}
                 onClick={onClick}
               >

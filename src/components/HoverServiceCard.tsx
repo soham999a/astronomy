@@ -55,49 +55,53 @@ const HoverServiceCard = ({
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-end'
+          justifyContent: 'space-between'
         }}
       >
-        <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+        <div className="flex-grow"></div>
+        <div>
+          <h3 className="text-2xl font-semibold mb-2">{title}</h3>
 
-        <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Icon */}
-          <div className="h-12 w-12 rounded-full bg-mystic-gold/20 flex items-center justify-center mb-3 text-mystic-gold">
-            <Icon size={24} />
-          </div>
+          <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+            {/* Icon */}
+            <div className="h-12 w-12 rounded-full bg-mystic-gold/20 flex items-center justify-center mb-3 text-mystic-gold">
+              <Icon size={24} />
+            </div>
 
-          {/* Description */}
-          <p className="text-gray-200 mb-4">{description}</p>
+            {/* Description */}
+            <p className="text-gray-200 mb-4">{description}</p>
 
-          {/* Button */}
-          {comingSoon ? (
-            <span className="inline-block px-4 py-2 rounded-md bg-gray-700 text-gray-300">
-              Coming Soon
-            </span>
-          ) : (
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-mystic-gold to-amber-500
-                         text-white px-6 py-3 rounded-md border-2 border-white/30
-                         hover:from-amber-500 hover:to-mystic-gold transition-all duration-300
-                         font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105
-                         animate-pulse-slow"
-            >
-              Book Now
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-2"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+            {/* Button */}
+            {comingSoon ? (
+              <span className="inline-block px-4 py-2 rounded-md bg-gray-700 text-gray-300">
+                Coming Soon
+              </span>
+            ) : (
+              <Link
+                to="/contact"
+                target="_blank"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-mystic-gold to-amber-500
+                          text-white px-6 py-3 rounded-md border-2 border-white/30
+                          hover:from-amber-500 hover:to-mystic-gold transition-all duration-300
+                          font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105
+                          animate-pulse-slow z-20"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-          )}
+                Book Now
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
