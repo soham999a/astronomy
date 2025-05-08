@@ -74,14 +74,22 @@ const Navbar = () => {
         {/* Mobile Navigation - Fixed for iOS with improved handling */}
         {isMenuOpen && (
           <div
-            className="fixed inset-x-0 top-[60px] bottom-0 z-40 bg-white md:hidden overflow-hidden"
+            className="fixed inset-x-0 top-[60px] bottom-0 z-40 bg-white md:hidden overflow-hidden pb-safe"
             style={{
               height: 'calc(100vh - 60px)',
-              overscrollBehavior: 'contain'
+              height: 'calc(calc(var(--vh, 1vh) * 100) - 60px)',
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch'
             }}
             onClick={(e) => e.target === e.currentTarget && setIsMenuOpen(false)}
           >
-            <div className="h-full overflow-y-auto pb-safe" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div
+              className="h-full overflow-y-auto pb-safe"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                paddingBottom: 'max(env(safe-area-inset-bottom), 20px)'
+              }}
+            >
               <nav className="flex flex-col items-center pt-8 pb-20 space-y-8 text-lg px-6">
                 <NavLinks onClick={() => setIsMenuOpen(false)} />
               </nav>

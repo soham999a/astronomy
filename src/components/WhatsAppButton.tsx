@@ -3,8 +3,17 @@ import { useState, useEffect } from 'react';
 
 const WhatsAppButton = () => {
   const [showButton, setShowButton] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
+    // Detect iOS devices
+    const checkIOS = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      return /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream;
+    };
+
+    setIsIOS(checkIOS());
+
     const handleScroll = () => {
       if (window.scrollY > 300) {
         setShowButton(true);
@@ -25,8 +34,15 @@ const WhatsAppButton = () => {
       href="https://wa.me/919876543210"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 ${showButton ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-        }`}
+      className={`fixed ${isIOS ? 'pb-safe' : 'bottom-6'} right-6 bg-green-500 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300
+        ${showButton ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}
+        ${isIOS ? 'bottom-[calc(1.5rem+var(--safe-area-inset-bottom,0px))]' : 'bottom-6'}`}
+      style={{
+        // Add touch target padding for better accessibility on mobile
+        padding: '12px',
+        // Add active state for better touch feedback
+        WebkitTapHighlightColor: 'transparent',
+      }}
       aria-label="Chat on WhatsApp"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

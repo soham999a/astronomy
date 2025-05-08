@@ -111,6 +111,32 @@
     .pb-safe {
       padding-bottom: env(safe-area-inset-bottom);
     }
+
+    .pt-safe {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .pl-safe {
+      padding-left: env(safe-area-inset-left);
+    }
+
+    .pr-safe {
+      padding-right: env(safe-area-inset-right);
+    }
+
+    /* Add safe area padding to all sides */
+    .p-safe {
+      padding-top: env(safe-area-inset-top);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+    }
+
+    /* Fixed elements should respect safe areas */
+    .fixed, .sticky {
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-top: env(safe-area-inset-top);
+    }
   }
 
   .hover-glow {
@@ -197,6 +223,56 @@
     50% {
       opacity: 1;
       transform: scale(1.2);
+    }
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    /* Increase touch targets for better mobile usability */
+    button, a, .btn-primary, .btn-secondary {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Improve form elements on mobile */
+    input, textarea, select {
+      font-size: 16px; /* Prevents iOS zoom on focus */
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    /* Adjust spacing for mobile */
+    .section {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    /* Improve scrolling on iOS */
+    .overflow-auto, .overflow-y-auto, .overflow-x-auto {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* iOS-specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    /* iOS-specific styles */
+    body {
+      /* Disable pull-to-refresh */
+      overscroll-behavior-y: none;
+      /* Prevent content from being hidden under the bottom bar */
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    /* Fix for iOS input zoom issues */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="search"],
+    input[type="password"],
+    textarea {
+      font-size: 16px;
     }
   }
 }
