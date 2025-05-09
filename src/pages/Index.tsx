@@ -1,5 +1,6 @@
 import { Calendar, UserCheck, Phone, Award, Compass, Star, Sparkles, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,12 +9,47 @@ import ServiceCard from '@/components/ServiceCard';
 import ServiceSlideshow from '@/components/ServiceSlideshow';
 import TestimonialCard from '@/components/TestimonialCard';
 import ServicesSection from '@/components/ServicesSection';
+import HomePageAnimation from '@/components/HomePageAnimation';
 
 const Index = () => {
+  const [showHomeAnimation, setShowHomeAnimation] = useState(true);
+  const [contentVisible, setContentVisible] = useState(false);
+
+  // Always show the animation when the home page loads
+  useEffect(() => {
+    // Start with the animation showing and content hidden
+    setShowHomeAnimation(true);
+    setContentVisible(false);
+
+    // Preload the logo video for better performance
+    const preloadVideo = () => {
+      const video = document.createElement('video');
+      video.src = '/logo video.mp4';
+      video.muted = true;
+      video.preload = 'auto';
+    };
+
+    // Preload assets
+    preloadVideo();
+  }, []);
+
+  // Handle animation completion
+  const handleAnimationComplete = () => {
+    setShowHomeAnimation(false);
+    setContentVisible(true);
+  };
+
   return (
     <div className="min-h-screen bg-soft-cream">
-      <Navbar />
-      <WhatsAppButton />
+      {/* Home page animation - shows on every page refresh */}
+      {showHomeAnimation && (
+        <HomePageAnimation onComplete={handleAnimationComplete} duration={4000} />
+      )}
+
+      {/* Main content - initially hidden until animation completes */}
+      <div style={{ visibility: contentVisible ? 'visible' : 'hidden' }}>
+        <Navbar />
+        <WhatsAppButton />
 
       {/* Hero Section */}
       <HeroSection />
@@ -191,6 +227,7 @@ const Index = () => {
 
       {/* Footer */}
       <Footer />
+      </div>
     </div>
   );
 };

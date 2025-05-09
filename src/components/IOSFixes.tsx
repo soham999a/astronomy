@@ -37,6 +37,22 @@ const IOSFixes = () => {
         (navbar as HTMLElement).style.zIndex = '1000';
       }
 
+      // Fix for hero section on mobile
+      const heroSection = document.querySelector('section.h-screen');
+      if (heroSection) {
+        // Ensure hero section takes up the full viewport height on mobile
+        (heroSection as HTMLElement).style.height = `${window.innerHeight}px`;
+      }
+
+      // Fix for loading animation on mobile
+      const loadingContainer = document.querySelector('.fixed.inset-0.flex.flex-col.items-center.justify-center');
+      if (loadingContainer) {
+        // Ensure loading animation takes up the full viewport height
+        (loadingContainer as HTMLElement).style.height = `${window.innerHeight}px`;
+        // Prevent any scrolling during animation
+        (loadingContainer as HTMLElement).style.overflow = 'hidden';
+      }
+
       // Improve touch targets for mobile
       const touchTargets = document.querySelectorAll('a, button, input, select, textarea');
       touchTargets.forEach(element => {
@@ -49,6 +65,12 @@ const IOSFixes = () => {
             parseInt(window.getComputedStyle(el).getPropertyValue('min-width')) < 44) {
           el.style.minWidth = '44px';
         }
+      });
+
+      // Make service cards more mobile-friendly
+      const serviceCards = document.querySelectorAll('.hover-service-card');
+      serviceCards.forEach(card => {
+        (card as HTMLElement).style.touchAction = 'manipulation';
       });
     };
 
@@ -83,6 +105,18 @@ const IOSFixes = () => {
       setVhProperty();
       window.addEventListener('resize', setVhProperty);
       window.addEventListener('orientationchange', setVhProperty);
+      window.addEventListener('load', setVhProperty);
+
+      // Also update on scroll for iOS Safari address bar changes
+      let lastScrollTop = 0;
+      const handleScroll = () => {
+        const st = window.scrollY || document.documentElement.scrollTop;
+        if (Math.abs(lastScrollTop - st) > 50) {
+          setVhProperty();
+          lastScrollTop = st;
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
 
       // Prevent double-tap zoom on iOS
       const preventDoubleTapZoom = (e: TouchEvent) => {
@@ -103,6 +137,33 @@ const IOSFixes = () => {
       scrollableElements.forEach(element => {
         (element as HTMLElement).style.WebkitOverflowScrolling = 'touch';
       });
+
+      // Additional iOS-specific fixes for loading animation
+      const fixLoadingAnimationForIOS = () => {
+        const loadingContainer = document.querySelector('.fixed.inset-0.flex.flex-col.items-center.justify-center');
+        if (loadingContainer) {
+          // Apply iOS-specific styles to the loading container
+          (loadingContainer as HTMLElement).style.position = 'fixed';
+          (loadingContainer as HTMLElement).style.top = '0';
+          (loadingContainer as HTMLElement).style.left = '0';
+          (loadingContainer as HTMLElement).style.right = '0';
+          (loadingContainer as HTMLElement).style.bottom = '0';
+          (loadingContainer as HTMLElement).style.height = `${window.innerHeight}px`;
+          (loadingContainer as HTMLElement).style.WebkitOverflowScrolling = 'touch';
+
+          // Ensure the logo animation works correctly on iOS
+          const logoContainer = loadingContainer.querySelector('.relative.z-10');
+          if (logoContainer) {
+            (logoContainer as HTMLElement).style.willChange = 'transform';
+            (logoContainer as HTMLElement).style.WebkitBackfaceVisibility = 'hidden';
+          }
+        }
+      };
+
+      // Apply iOS loading animation fixes
+      fixLoadingAnimationForIOS();
+      window.addEventListener('resize', fixLoadingAnimationForIOS);
+      window.addEventListener('orientationchange', fixLoadingAnimationForIOS);
 
       // Fix for iOS input focus issues
       const handleInputFocus = () => {
@@ -125,7 +186,13 @@ const IOSFixes = () => {
         document.documentElement.style.touchAction = '';
         window.removeEventListener('resize', setVhProperty);
         window.removeEventListener('orientationchange', setVhProperty);
+        window.removeEventListener('load', setVhProperty);
+        window.removeEventListener('scroll', handleScroll);
         document.removeEventListener('touchend', preventDoubleTapZoom);
+
+        // Remove loading animation event listeners
+        window.removeEventListener('resize', fixLoadingAnimationForIOS);
+        window.removeEventListener('orientationchange', fixLoadingAnimationForIOS);
 
         inputElements.forEach(element => {
           element.removeEventListener('focus', handleInputFocus);

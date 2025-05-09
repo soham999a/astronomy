@@ -8,6 +8,7 @@ import {
   FaRegSun,
   FaEnvelope
 } from 'react-icons/fa';
+import LogoVideo from './LogoVideo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +43,21 @@ const Navbar = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
-        <a href="/" className="flex items-center">
-          <h1 className="text-xl md:text-2xl font-bold text-mystic-gold">Logo</h1>
+      <div className="container mx-auto flex justify-between items-center pl-1 pr-4 md:pl-2 md:pr-6">
+        <a href="/" className="flex items-center ml-0 group">
+          <div className="relative overflow-hidden transition-all duration-300 transform group-hover:scale-105 flex flex-col items-center">
+            {/* Different sizes for different screen sizes */}
+            <div className="hidden md:block">
+              <LogoVideo width="110px" height="55px" className="mb-1" />
+            </div>
+            <div className="block md:hidden">
+              <LogoVideo width="90px" height="45px" className="mb-1" />
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-xs md:text-sm font-bold tracking-widest bg-gradient-to-r from-mystic-gold to-amber-500 bg-clip-text text-transparent whitespace-nowrap">HARMONY SEEKER</span>
+            </div>
+            <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-mystic-gold to-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          </div>
         </a>
 
         {/* Mobile menu button */}

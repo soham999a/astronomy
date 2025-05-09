@@ -57,12 +57,11 @@ const ServicesSection = () => {
                 imageSrc={service.imageSrc}
                 comingSoon={service.comingSoon}
               />
-              {/* Service name below the card */}
-              <div className="text-center mt-5 mb-3">
-                <h3 className="text-2xl md:text-3xl font-bold relative inline-block bg-gradient-to-r from-mystic-gold to-amber-500 bg-clip-text text-transparent tracking-wide">
-                  {service.title}
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-mystic-gold to-amber-500 rounded-full transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-                </h3>
+              {/* Service name below the card - now shown as a small label */}
+              <div className="text-center mt-3 mb-2">
+                <span className="text-sm md:text-base font-medium text-charcoal/80">
+                  {service.title.split(' ')[0]}
+                </span>
               </div>
             </div>
           ))}
