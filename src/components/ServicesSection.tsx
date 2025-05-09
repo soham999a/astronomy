@@ -1,4 +1,4 @@
-git aimport { Compass, Calculator, Star } from 'lucide-react';
+import { Compass, Calculator, Star } from 'lucide-react';
 import HoverServiceCard from './HoverServiceCard';
 
 const ServicesSection = () => {
