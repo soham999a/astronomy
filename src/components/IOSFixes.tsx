@@ -26,37 +26,55 @@ const IOSFixes = () => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
 
-    // Apply fixes for all mobile devices
+    // Enhanced fixes for all mobile devices
     const applyMobileFixes = () => {
       // Fix for mobile navbar
       const navbar = document.querySelector('header');
       if (navbar) {
         // Ensure navbar is properly positioned on mobile
-        (navbar as HTMLElement).style.position = 'fixed';
-        (navbar as HTMLElement).style.width = '100%';
-        (navbar as HTMLElement).style.zIndex = '1000';
+        const navEl = navbar as HTMLElement;
+        navEl.style.position = 'fixed';
+        navEl.style.width = '100%';
+        navEl.style.zIndex = '1000';
+        navEl.style.top = '0';
+        navEl.style.left = '0';
+
+        // Optimize navbar for mobile performance
+        navEl.style.WebkitBackfaceVisibility = 'hidden';
+        navEl.style.WebkitTransform = 'translate3d(0,0,0)';
       }
 
       // Fix for hero section on mobile
       const heroSection = document.querySelector('section.h-screen');
       if (heroSection) {
+        const heroEl = heroSection as HTMLElement;
         // Ensure hero section takes up the full viewport height on mobile
-        (heroSection as HTMLElement).style.height = `${window.innerHeight}px`;
+        heroEl.style.height = `${window.innerHeight}px`;
+        heroEl.style.WebkitBackfaceVisibility = 'hidden';
+        heroEl.style.WebkitTransform = 'translate3d(0,0,0)';
       }
 
       // Fix for loading animation on mobile
       const loadingContainer = document.querySelector('.fixed.inset-0.flex.flex-col.items-center.justify-center');
       if (loadingContainer) {
-        // Ensure loading animation takes up the full viewport height
-        (loadingContainer as HTMLElement).style.height = `${window.innerHeight}px`;
+        const loadingEl = loadingContainer as HTMLElement;
+        // Ensure loading animation takes up the full viewport height and width
+        loadingEl.style.height = `${window.innerHeight}px`;
+        loadingEl.style.width = `${window.innerWidth}px`;
         // Prevent any scrolling during animation
-        (loadingContainer as HTMLElement).style.overflow = 'hidden';
+        loadingEl.style.overflow = 'hidden';
+        loadingEl.style.touchAction = 'none';
+        // Optimize for mobile performance
+        loadingEl.style.WebkitBackfaceVisibility = 'hidden';
+        loadingEl.style.WebkitTransform = 'translate3d(0,0,0)';
+        loadingEl.style.willChange = 'transform, opacity';
       }
 
       // Improve touch targets for mobile
       const touchTargets = document.querySelectorAll('a, button, input, select, textarea');
       touchTargets.forEach(element => {
         const el = element as HTMLElement;
+        // Ensure minimum touch target size of 44px (Apple's recommendation)
         if (window.getComputedStyle(el).getPropertyValue('min-height') === 'auto' ||
             parseInt(window.getComputedStyle(el).getPropertyValue('min-height')) < 44) {
           el.style.minHeight = '44px';
@@ -65,12 +83,33 @@ const IOSFixes = () => {
             parseInt(window.getComputedStyle(el).getPropertyValue('min-width')) < 44) {
           el.style.minWidth = '44px';
         }
+
+        // Optimize touch targets for mobile performance
+        el.style.touchAction = 'manipulation';
       });
 
       // Make service cards more mobile-friendly
-      const serviceCards = document.querySelectorAll('.hover-service-card');
+      const serviceCards = document.querySelectorAll('.relative.overflow-hidden.rounded-lg');
       serviceCards.forEach(card => {
-        (card as HTMLElement).style.touchAction = 'manipulation';
+        const cardEl = card as HTMLElement;
+        cardEl.style.touchAction = 'manipulation';
+        cardEl.style.WebkitBackfaceVisibility = 'hidden';
+        cardEl.style.WebkitTransform = 'translate3d(0,0,0)';
+
+        // Ensure proper height on mobile
+        if (window.innerWidth <= 768) {
+          cardEl.style.height = '300px';
+        } else if (window.innerWidth <= 1024) {
+          cardEl.style.height = '320px';
+        }
+      });
+
+      // Optimize images for mobile
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        const imgEl = img as HTMLElement;
+        imgEl.style.WebkitBackfaceVisibility = 'hidden';
+        imgEl.style.WebkitTransform = 'translate3d(0,0,0)';
       });
     };
 
@@ -138,24 +177,64 @@ const IOSFixes = () => {
         (element as HTMLElement).style.WebkitOverflowScrolling = 'touch';
       });
 
-      // Additional iOS-specific fixes for loading animation
+      // Enhanced iOS-specific fixes for loading animation
       const fixLoadingAnimationForIOS = () => {
+        // Target the loading animation container
         const loadingContainer = document.querySelector('.fixed.inset-0.flex.flex-col.items-center.justify-center');
         if (loadingContainer) {
           // Apply iOS-specific styles to the loading container
-          (loadingContainer as HTMLElement).style.position = 'fixed';
-          (loadingContainer as HTMLElement).style.top = '0';
-          (loadingContainer as HTMLElement).style.left = '0';
-          (loadingContainer as HTMLElement).style.right = '0';
-          (loadingContainer as HTMLElement).style.bottom = '0';
-          (loadingContainer as HTMLElement).style.height = `${window.innerHeight}px`;
-          (loadingContainer as HTMLElement).style.WebkitOverflowScrolling = 'touch';
+          const loadingEl = loadingContainer as HTMLElement;
+          loadingEl.style.position = 'fixed';
+          loadingEl.style.top = '0';
+          loadingEl.style.left = '0';
+          loadingEl.style.right = '0';
+          loadingEl.style.bottom = '0';
+          loadingEl.style.height = `${window.innerHeight}px`;
+          loadingEl.style.width = `${window.innerWidth}px`;
+          loadingEl.style.WebkitOverflowScrolling = 'touch';
+          loadingEl.style.overflow = 'hidden';
+          loadingEl.style.WebkitBackfaceVisibility = 'hidden';
+          loadingEl.style.WebkitTransform = 'translate3d(0,0,0)';
+          loadingEl.style.willChange = 'transform, opacity';
+          loadingEl.style.touchAction = 'none';
+
+          // Prevent scrolling during animation
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
 
           // Ensure the logo animation works correctly on iOS
           const logoContainer = loadingContainer.querySelector('.relative.z-10');
           if (logoContainer) {
-            (logoContainer as HTMLElement).style.willChange = 'transform';
-            (logoContainer as HTMLElement).style.WebkitBackfaceVisibility = 'hidden';
+            const logoEl = logoContainer as HTMLElement;
+            logoEl.style.willChange = 'transform';
+            logoEl.style.WebkitBackfaceVisibility = 'hidden';
+            logoEl.style.WebkitTransform = 'translate3d(0,0,0)';
+          }
+
+          // Fix for the cosmic background
+          const cosmicBackground = loadingContainer.querySelector('.absolute.inset-0.overflow-hidden');
+          if (cosmicBackground) {
+            const bgEl = cosmicBackground as HTMLElement;
+            bgEl.style.WebkitBackfaceVisibility = 'hidden';
+            bgEl.style.WebkitTransform = 'translate3d(0,0,0)';
+            bgEl.style.willChange = 'transform';
+          }
+
+          // Fix for stars and animations
+          const stars = loadingContainer.querySelectorAll('.absolute.rounded-full');
+          stars.forEach(star => {
+            const starEl = star as HTMLElement;
+            starEl.style.WebkitBackfaceVisibility = 'hidden';
+            starEl.style.WebkitTransform = 'translate3d(0,0,0)';
+          });
+
+          // Fix for brand name text
+          const brandName = loadingContainer.querySelector('h1');
+          if (brandName) {
+            const textEl = brandName as HTMLElement;
+            textEl.style.WebkitBackfaceVisibility = 'hidden';
+            textEl.style.WebkitTransform = 'translate3d(0,0,0)';
+            textEl.style.willChange = 'transform, opacity';
           }
         }
       };
@@ -164,6 +243,11 @@ const IOSFixes = () => {
       fixLoadingAnimationForIOS();
       window.addEventListener('resize', fixLoadingAnimationForIOS);
       window.addEventListener('orientationchange', fixLoadingAnimationForIOS);
+
+      // Re-apply fixes after orientation change with a delay
+      window.addEventListener('orientationchange', () => {
+        setTimeout(fixLoadingAnimationForIOS, 300);
+      });
 
       // Fix for iOS input focus issues
       const handleInputFocus = () => {
@@ -179,11 +263,16 @@ const IOSFixes = () => {
         element.addEventListener('focus', handleInputFocus);
       });
 
-      // Cleanup for iOS-specific fixes
+      // Enhanced cleanup for iOS-specific fixes
       return () => {
+        // Reset scroll behavior
         document.body.style.overscrollBehavior = '';
         document.documentElement.style.overscrollBehavior = '';
         document.documentElement.style.touchAction = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+
+        // Remove event listeners
         window.removeEventListener('resize', setVhProperty);
         window.removeEventListener('orientationchange', setVhProperty);
         window.removeEventListener('load', setVhProperty);
@@ -194,9 +283,22 @@ const IOSFixes = () => {
         window.removeEventListener('resize', fixLoadingAnimationForIOS);
         window.removeEventListener('orientationchange', fixLoadingAnimationForIOS);
 
+        // Remove delayed orientation change handler
+        const delayedOrientationHandler = () => setTimeout(fixLoadingAnimationForIOS, 300);
+        window.removeEventListener('orientationchange', delayedOrientationHandler);
+
+        // Remove input focus handlers
         inputElements.forEach(element => {
           element.removeEventListener('focus', handleInputFocus);
         });
+
+        // Reset any loading animation container styles if it exists
+        const loadingContainer = document.querySelector('.fixed.inset-0.flex.flex-col.items-center.justify-center');
+        if (loadingContainer) {
+          const loadingEl = loadingContainer as HTMLElement;
+          loadingEl.style.overflow = '';
+          loadingEl.style.touchAction = '';
+        }
       };
     }
 
